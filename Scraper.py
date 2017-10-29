@@ -1,6 +1,8 @@
 import urllib.request
 from bs4 import BeautifulSoup
 
+from CardGenerator import CardGenerator
+
 
 class Scraper:
     def __init__(self):
@@ -30,6 +32,7 @@ class Scraper:
             return (header, answer)
 
     def scrape(self, baseurl, pageurl):
+        cardGenerator = CardGenerator('C# Trivia')
         with urllib.request.urlopen(baseurl+pageurl) as url:
             page = url.read()
             soup = BeautifulSoup(page, 'html.parser')
@@ -38,7 +41,9 @@ class Scraper:
             for innerUrlHtml in innerUrlsHtml:
                 innerUrl = innerUrlHtml.find('a')['href']
                 data = self.parseInnerUrl(baseurl+innerUrl)
-                print(data)
+                cardGenerator.add_card(data[0], data[1])
+
+        cardGenerator.output_deck('deck.apkg')
 
 
 
