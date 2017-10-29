@@ -1,5 +1,5 @@
-
 import genanki
+
 
 class CardGenerator:
     def __init__(self, deckName):
@@ -11,9 +11,9 @@ class CardGenerator:
                                    ],
                                    templates=[
                                        {
-                                           'name':'Card 1',
-                                           'qfmt': '{{Question}}',
-                                           'afmt': '{{FrontSide}}<hr id="answer">{{Answer}}',
+                                           'name': 'Card 1',
+                                           'qfmt': '<p style="font-size:20px">{{Question}}</p>',
+                                           'afmt': '{{FrontSide}}<hr id="answer"><p style="font-size:20px">{{Answer}}</p>',
                                        },
                                    ])
         self.deck = genanki.Deck(
